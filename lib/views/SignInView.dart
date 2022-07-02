@@ -112,6 +112,7 @@ class _SignInViewState extends State<SignInView> {
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Greenhouse',
                           ),
+                          obscureText: true,
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(

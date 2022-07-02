@@ -151,7 +151,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                             Spacer(),
                             SoulPotTextField(
                               tfController: _pictureUrlController,
-                              hintText: "URL du GIF de la plante",
+                              hintText: "URL de l'image de la plante",
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),

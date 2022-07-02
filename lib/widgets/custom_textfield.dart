@@ -48,7 +48,7 @@ class SoulPotTextField extends StatelessWidget {
                 onChanged: (_) {},
                 decoration: InputDecoration(
                   hintText: hintText,
-                  hintStyle: TextStyle(color: SoulPotTheme.SPBlack),
+                  hintStyle: TextStyle(color: Color(0xFF453A3A)),
                   suffixStyle: TextStyle(color: SoulPotTheme.SPBlack),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(30)),

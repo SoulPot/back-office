@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:soulpot_manager/theme.dart';
+import 'package:soulpot_manager/views/SignInView.dart';
 import 'package:soulpot_manager/views/add_data/AddDataView.dart';
 import 'package:soulpot_manager/views/add_data/AddPlantView.dart';
 import 'package:soulpot_manager/views/charts/ChartsView.dart';
@@ -155,6 +157,23 @@ class _HomeViewState extends State<HomeView> {
                   setState(() {
                     _controller.selectIndex(3);
                   });
+                },
+              ),
+              SidebarXItem(
+                icon: Icons.output_rounded,
+                label: 'Déconnexion',
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageTransition(
+                        alignment: Alignment.bottomCenter,
+                        curve: Curves.easeInOut,
+                        duration: Duration(milliseconds: 600),
+                        reverseDuration: Duration(milliseconds: 600),
+                        type: PageTransitionType.fade,
+                        child: SignInView(),
+                        childCurrent: context.widget),
+                  );
                 },
               ),
             ],
