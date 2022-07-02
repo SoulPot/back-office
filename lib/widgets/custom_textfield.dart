@@ -28,14 +28,7 @@ class SoulPotTextField extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(30)),
-        gradient: LinearGradient(
-          colors: [
-            SoulPotTheme.SPPalePurple,
-            SoulPotTheme.SPPurple
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: Color(0xFF8484E0),
       ),
       child: Padding(
         padding: EdgeInsets.all(10),
@@ -55,6 +48,8 @@ class SoulPotTextField extends StatelessWidget {
                 onChanged: (_) {},
                 decoration: InputDecoration(
                   hintText: hintText,
+                  hintStyle: TextStyle(color: SoulPotTheme.SPBlack),
+                  suffixStyle: TextStyle(color: SoulPotTheme.SPBlack),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                     borderSide: BorderSide(

@@ -4,7 +4,8 @@ import 'package:soulpot_manager/models/Analyzer.dart';
 import 'package:soulpot_manager/models/Plant.dart';
 
 class FirestoreManager {
-  static final FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: Firebase.apps.first);
+  static final FirebaseFirestore firestore =
+      FirebaseFirestore.instanceFor(app: Firebase.apps.first);
 
   static Future<void> addPlant(Plant plantToAdd) {
     return firestore
@@ -21,6 +22,19 @@ class FirestoreManager {
           'max_soil_moist': plantToAdd.max_soil_moist,
           'min_soil_moist': plantToAdd.min_soil_moist,
           'image_url': plantToAdd.gifURL,
+          'family': plantToAdd.family,
+          'recoText': plantToAdd.recoText,
+          'shortDescription': plantToAdd.shortDescription,
+          'origin': plantToAdd.origin,
+          'infos': plantToAdd.infos,
+          'height': plantToAdd.height,
+          'flower_color': plantToAdd.flower_color,
+          'cutting': plantToAdd.cutting,
+          'sowing': plantToAdd.sowing,
+          'flowering_season': plantToAdd.flowering_season,
+          'picture_url': plantToAdd.gifURL,
+          'plant_type': plantToAdd.plant_type,
+          'planting_season': plantToAdd.planting_season,
         })
         .then((value) => print("Plant Added"))
         .catchError((error) => print("Failed to add plant: $error"));
@@ -50,11 +64,7 @@ class FirestoreManager {
 
   static Future<Plant> getPlantByID(String plantID) async {
     Plant plant = Plant.empty();
-    await firestore
-        .collection("plants")
-        .doc(plantID)
-        .get()
-        .then((value) {
+    await firestore.collection("plants").doc(plantID).get().then((value) {
       plant = Plant(
         value.data()!['pid'],
         value.data()!['display_pid'],
@@ -82,18 +92,15 @@ class FirestoreManager {
 
   static Future<List<Analyzer>> getAnalyzers() async {
     List<Analyzer> analyzers = [];
-    await firestore
-        .collection('analyzers')
-        .get()
-        .then((value) async {
+    await firestore.collection('analyzers').get().then((value) async {
       for (var analyzerData in value.docs) {
         await FirebaseFirestore.instance
             .collection('plants')
             .doc(analyzerData.data()['plantID'])
             .get()
             .then((plantData) {
-          Analyzer analyzer =
-              new Analyzer(analyzerData.id, plantData.data()!['image_url'], plantData.data()!['alias']);
+          Analyzer analyzer = new Analyzer(analyzerData.id,
+              plantData.data()!['image_url'], plantData.data()!['alias']);
           analyzers.add(analyzer);
         });
       }
