@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:sidebarx/sidebarx.dart';
 import 'package:soulpot_manager/theme.dart';
 
+import 'AddObjectiveView.dart';
 import 'AddPlantView.dart';
 
 class AddDataView extends StatefulWidget {
@@ -72,31 +72,39 @@ class _AddDataViewState extends State<AddDataView> {
                   ),
                 ),
                 Spacer(),
-                // ElevatedButton(
-                //   onPressed: () async {},
-                //   child: Text(
-                //     "Ajouter un nouvel utilisateur",
-                //     textAlign: TextAlign.center,
-                //     style: TextStyle(
-                //         color: SoulPotTheme.SPBlack,
-                //         fontSize: 20,
-                //         fontWeight: FontWeight.bold,
-                //         fontFamily: 'Greenhouse'),
-                //   ),
-                //   style: ElevatedButton.styleFrom(
-                //     shape: new RoundedRectangleBorder(
-                //       borderRadius: new BorderRadius.circular(30.0),
-                //     ),
-                //     primary: SoulPotTheme.SPPalePurple,
-                //     padding: EdgeInsets.symmetric(
-                //         horizontal: maxWidth / 10, vertical: maxHeight / 30),
-                //     textStyle: TextStyle(
-                //       fontSize: 20,
-                //       fontWeight: FontWeight.bold,
-                //     ),
-                //   ),
-                // ),
-                // Spacer(),
+                ElevatedButton(
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.fade,
+                        child: AddObjectiveView(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Ajouter un nouvel objectif",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: SoulPotTheme.SPBlack,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Greenhouse'),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0),
+                    ),
+                    primary: SoulPotTheme.SPPaleGreen,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: maxWidth / 10, vertical: maxHeight / 30),
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Spacer(),
               ],
             ),
           ),

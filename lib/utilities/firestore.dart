@@ -195,6 +195,21 @@ class FirestoreManager {
     return objectives;
   }
 
+  static Future<void> addObjective(Objective objectiveToAdd) {
+    return firestore
+        .collection('objectives')
+        .doc(objectiveToAdd.id)
+        .set({
+      'nom': objectiveToAdd.name,
+      'description': objectiveToAdd.description ,
+      'field': objectiveToAdd.field,
+      'objective_value': objectiveToAdd.objective_value,
+      'type': objectiveToAdd.type,
+    })
+        .then((value) => print("Objective Updated"))
+        .catchError((error) => print("Failed to update objective: $error"));
+  }
+
   static Future<void> updateObjective(Objective objectiveToUpdate) {
     return firestore
         .collection('plants')
