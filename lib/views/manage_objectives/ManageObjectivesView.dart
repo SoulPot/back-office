@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
+import 'package:soulpot_manager/views/manage_objectives/widgets/objectives_collection_viewer.dart';
 
 import '../../theme.dart';
 
-class ManageUsersView extends StatefulWidget {
-  const ManageUsersView({Key? key}) : super(key: key);
+class ManageObjectivesView extends StatefulWidget {
+  const ManageObjectivesView({Key? key}) : super(key: key);
 
   @override
-  State<ManageUsersView> createState() => _ManageUsersViewState();
+  State<ManageObjectivesView> createState() => _ManageObjectivesViewState();
 }
 
-class _ManageUsersViewState extends State<ManageUsersView> {
+class _ManageObjectivesViewState extends State<ManageObjectivesView> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +29,8 @@ class _ManageUsersViewState extends State<ManageUsersView> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: Container(), //declare your widget here
+          child: ObjectivesCollectionViewer(),
+             //declare your widgets here
         ),
       ),
     );
