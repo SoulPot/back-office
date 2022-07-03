@@ -152,15 +152,6 @@ class _HomeViewState extends State<HomeView> {
                 },
               ),
               SidebarXItem(
-                icon: Icons.people,
-                label: 'Gestion utilisateurs',
-                onTap: () {
-                  setState(() {
-                    _controller.selectIndex(3);
-                  });
-                },
-              ),
-              SidebarXItem(
                 icon: Icons.output_rounded,
                 label: 'Déconnexion',
                 onTap: () {
