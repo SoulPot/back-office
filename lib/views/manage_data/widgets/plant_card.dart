@@ -100,7 +100,9 @@ class _PlantCardState extends State<PlantCard> {
                       context,
                       PageTransition(
                         type: PageTransitionType.fade,
-                        child: PlantDetailsView(),
+                        child: PlantDetailsView(
+                          plant: widget.plant,
+                        ),
                       ),
                     );
                   },

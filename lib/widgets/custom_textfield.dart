@@ -7,19 +7,22 @@ class SoulPotTextField extends StatelessWidget {
   const SoulPotTextField(
       {Key? key,
       required TextEditingController tfController,
-      required String hintText,
+      required String titleText,
       required double width,
-      required double height})
+      required double height,
+      required String hintText})
       : this.width = width,
         this.height = height,
-        this.hintText = hintText,
+        this.titleText = titleText,
         this.tfController = tfController,
+        this.hintText = hintText,
         super(key: key);
 
   final TextEditingController tfController;
-  final String hintText;
+  final String titleText;
   final double width;
   final double height;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class SoulPotTextField extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           children: [
-            Text(hintText,
+            Text(titleText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: SoulPotTheme.SPBlack,

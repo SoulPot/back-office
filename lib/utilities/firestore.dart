@@ -32,7 +32,7 @@ class FirestoreManager {
           'cutting': plantToAdd.cutting,
           'sowing': plantToAdd.sowing,
           'flowering_season': plantToAdd.flowering_season,
-          'picture_url': plantToAdd.gifURL,
+          'picture_url': plantToAdd.picture_url,
           'plant_type': plantToAdd.plant_type,
           'planting_season': plantToAdd.planting_season,
         })
@@ -128,4 +128,37 @@ class FirestoreManager {
     });
     return isAdmin;
   }
+
+  static Future<void> updatePlant(Plant plantToUpdate) {
+    return firestore
+        .collection('plants')
+        .doc(plantToUpdate.id)
+        .update({
+      'display_pid': plantToUpdate.display_pid,
+      'alias': plantToUpdate.alias ,
+      'max_light_lux': plantToUpdate.max_light_lux,
+      'min_light_lux': plantToUpdate.min_light_lux,
+      'max_temp': plantToUpdate.max_temp,
+      'min_temp': plantToUpdate.min_temp,
+      'max_soil_moist': plantToUpdate.max_soil_moist,
+      'min_soil_moist': plantToUpdate.min_soil_moist,
+      'image_url': plantToUpdate.gifURL,
+      'family': plantToUpdate.family,
+      'recoText': plantToUpdate.recoText,
+      'shortDescription': plantToUpdate.shortDescription,
+      'origin': plantToUpdate.origin,
+      'infos': plantToUpdate.infos,
+      'height': plantToUpdate.height,
+      'flower_color': plantToUpdate.flower_color,
+      'cutting': plantToUpdate.cutting,
+      'sowing': plantToUpdate.sowing,
+      'flowering_season': plantToUpdate.flowering_season,
+      'picture_url': plantToUpdate.picture_url,
+      'plant_type': plantToUpdate.plant_type,
+      'planting_season': plantToUpdate.planting_season,
+    })
+        .then((value) => print("Plant Updated"))
+        .catchError((error) => print("Failed to add plant: $error"));
+  }
+
 }
