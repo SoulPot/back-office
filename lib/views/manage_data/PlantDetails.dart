@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:soulpot_manager/views/HomeView.dart';
 
 import '../../models/Plant.dart';
 import '../../theme.dart';
@@ -9,7 +11,8 @@ import '../../utilities/firestore.dart';
 import '../../widgets/custom_textfield.dart';
 
 class PlantDetailsView extends StatefulWidget {
-  const PlantDetailsView({Key? key, required Plant this.plant}) : super(key: key);
+  const PlantDetailsView({Key? key, required Plant this.plant})
+      : super(key: key);
 
   final Plant plant;
 
@@ -52,7 +55,7 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            height: maxHeight,
+              height: maxHeight,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 gradient: LinearGradient(
@@ -97,10 +100,13 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                             ),
                           ),
                           Spacer(),
-                          Text("Informations primaires", style: TextStyle(
-                              color: SoulPotTheme.SPBackgroundWhite,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24),),
+                          Text(
+                            "Informations primaires",
+                            style: TextStyle(
+                                color: SoulPotTheme.SPBackgroundWhite,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24),
+                          ),
                           Spacer(),
                           Row(
                             children: [
@@ -132,10 +138,13 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                             ],
                           ),
                           Spacer(),
-                          Text("Gif et Images", style: TextStyle(
-                              color: SoulPotTheme.SPBackgroundWhite,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24),),
+                          Text(
+                            "Gif et Images",
+                            style: TextStyle(
+                                color: SoulPotTheme.SPBackgroundWhite,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24),
+                          ),
                           Spacer(),
                           Row(
                             children: [
@@ -151,7 +160,9 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                               SoulPotTextField(
                                 tfController: _pictureUrlController,
                                 titleText: "URL de l'image de la plante",
-                                hintText: widget.plant.picture_url != null ? widget.plant.picture_url! : "Pas d'url",
+                                hintText: widget.plant.picture_url != null
+                                    ? widget.plant.picture_url!
+                                    : "Pas d'url",
                                 width: maxWidth * 0.2,
                                 height: maxHeight * 0.15,
                               ),
@@ -159,10 +170,13 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                             ],
                           ),
                           Spacer(),
-                          Text("Valeurs recommandées", style: TextStyle(
-                              color: SoulPotTheme.SPBackgroundWhite,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24),),
+                          Text(
+                            "Valeurs recommandées",
+                            style: TextStyle(
+                                color: SoulPotTheme.SPBackgroundWhite,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24),
+                          ),
                           Spacer(),
                           Row(
                             children: [
@@ -186,7 +200,8 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                               SoulPotTextField(
                                 tfController: _maxHumidityController,
                                 titleText: "Humidité maximale recommandée",
-                                hintText: widget.plant.max_soil_moist.toString(),
+                                hintText:
+                                    widget.plant.max_soil_moist.toString(),
                                 width: maxWidth * 0.2,
                                 height: maxHeight * 0.15,
                               ),
@@ -194,7 +209,8 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                               SoulPotTextField(
                                 tfController: _minHumidityController,
                                 titleText: "Humidité minimale recommandée",
-                                hintText: widget.plant.min_soil_moist.toString(),
+                                hintText:
+                                    widget.plant.min_soil_moist.toString(),
                                 width: maxWidth * 0.2,
                                 height: maxHeight * 0.15,
                               ),
@@ -261,8 +277,7 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                               Spacer(),
                               SoulPotTextField(
                                 tfController: _recommendationsController,
-                                titleText:
-                                "Recommandations pour la plante",
+                                titleText: "Recommandations pour la plante",
                                 hintText: "sol, taille de pot,..",
                                 width: maxWidth * 0.2,
                                 height: maxHeight * 0.15,
@@ -346,7 +361,6 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                               Spacer(),
                             ],
                           ),
-
                           Spacer(),
                           Container(
                             decoration: BoxDecoration(
@@ -372,34 +386,82 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                               onPressed: () async {
                                 var plant = Plant(
                                   widget.plant.id,
-                                  _displayIdController.text != "" ? _displayIdController.text : widget.plant.display_pid,
-                                  _aliasController.text != "" ? _aliasController.text : widget.plant.alias,
-                                  _maxLightController.text != "" ? int.parse(_maxLightController.text) : widget.plant.min_light_lux,
-                                  _minLightController.text != "" ? int.parse(_minLightController.text) : widget.plant.max_light_lux,
-                                  _maxTempController.text != "" ? int.parse(_maxTempController.text) : widget.plant.max_temp,
-                                  _minTempController.text != "" ? int.parse(_minTempController.text) : widget.plant.min_temp,
-                                  _maxHumidityController.text != "" ? int.parse(_maxHumidityController.text) : widget.plant.max_soil_moist,
-                                  _minHumidityController.text != "" ? int.parse(_minHumidityController.text) : widget.plant.min_soil_moist,
-                                  _gifUrlController.text != "" ? _gifUrlController.text : widget.plant.gifURL,
-                                  _familyController.text != "" ? _familyController.text : widget.plant.family,
-                                  _recommendationsController.text != "" ? _recommendationsController.text : widget.plant.recoText,
-                                  _shortDescriptionController.text != "" ? _shortDescriptionController.text : widget.plant.shortDescription,
-                                  _originController.text != "" ? _originController.text : widget.plant.origin,
-                                  _infosController.text != "" ? _infosController.text : widget.plant.infos,
-                                  _heightController.text != "" ? _heightController.text : widget.plant.height,
-                                  _flowerColorController.text != "" ? _flowerColorController.text : widget.plant.flower_color,
-                                  _cuttingController.text != "" ? _cuttingController.text : widget.plant.cutting,
-                                  _sowingController.text != "" ? _sowingController.text : widget.plant.sowing,
-                                  _floweringController.text != "" ? _floweringController.text : widget.plant.flowering_season,
-                                  _pictureUrlController.text != "" ? _pictureUrlController.text : widget.plant.picture_url,
-                                  _plantTypeController.text != "" ? _plantTypeController.text : widget.plant.plant_type,
-                                  _plantingController.text != "" ? _plantingController.text : widget.plant.planting_season,
-
+                                  _displayIdController.text != ""
+                                      ? _displayIdController.text
+                                      : widget.plant.display_pid,
+                                  _aliasController.text != ""
+                                      ? _aliasController.text
+                                      : widget.plant.alias,
+                                  _maxLightController.text != ""
+                                      ? int.parse(_maxLightController.text)
+                                      : widget.plant.min_light_lux,
+                                  _minLightController.text != ""
+                                      ? int.parse(_minLightController.text)
+                                      : widget.plant.max_light_lux,
+                                  _maxTempController.text != ""
+                                      ? int.parse(_maxTempController.text)
+                                      : widget.plant.max_temp,
+                                  _minTempController.text != ""
+                                      ? int.parse(_minTempController.text)
+                                      : widget.plant.min_temp,
+                                  _maxHumidityController.text != ""
+                                      ? int.parse(_maxHumidityController.text)
+                                      : widget.plant.max_soil_moist,
+                                  _minHumidityController.text != ""
+                                      ? int.parse(_minHumidityController.text)
+                                      : widget.plant.min_soil_moist,
+                                  _gifUrlController.text != ""
+                                      ? _gifUrlController.text
+                                      : widget.plant.gifURL,
+                                  _familyController.text != ""
+                                      ? _familyController.text
+                                      : widget.plant.family,
+                                  _recommendationsController.text != ""
+                                      ? _recommendationsController.text
+                                      : widget.plant.recoText,
+                                  _shortDescriptionController.text != ""
+                                      ? _shortDescriptionController.text
+                                      : widget.plant.shortDescription,
+                                  _originController.text != ""
+                                      ? _originController.text
+                                      : widget.plant.origin,
+                                  _infosController.text != ""
+                                      ? _infosController.text
+                                      : widget.plant.infos,
+                                  _heightController.text != ""
+                                      ? _heightController.text
+                                      : widget.plant.height,
+                                  _flowerColorController.text != ""
+                                      ? _flowerColorController.text
+                                      : widget.plant.flower_color,
+                                  _cuttingController.text != ""
+                                      ? _cuttingController.text
+                                      : widget.plant.cutting,
+                                  _sowingController.text != ""
+                                      ? _sowingController.text
+                                      : widget.plant.sowing,
+                                  _floweringController.text != ""
+                                      ? _floweringController.text
+                                      : widget.plant.flowering_season,
+                                  _pictureUrlController.text != ""
+                                      ? _pictureUrlController.text
+                                      : widget.plant.picture_url,
+                                  _plantTypeController.text != ""
+                                      ? _plantTypeController.text
+                                      : widget.plant.plant_type,
+                                  _plantingController.text != ""
+                                      ? _plantingController.text
+                                      : widget.plant.planting_season,
                                 );
                                 print(context);
                                 FirestoreManager.updatePlant(plant)
-                                    .then((value) => Navigator.pop(context));
-
+                                    .then((value) => Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: HomeView(selectedIndex: 2,),
+                                          ),
+                                        ),);
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
@@ -416,21 +478,20 @@ class _PlantDetailsViewState extends State<PlantDetailsView> {
                                 ),
                               ),
                               style: ButtonStyle(
-                                shape:
-                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                 ),
-                                backgroundColor:
-                                MaterialStateProperty.all(Colors.transparent),
-                                shadowColor:
-                                MaterialStateProperty.all(Colors.transparent),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.transparent),
+                                shadowColor: MaterialStateProperty.all(
+                                    Colors.transparent),
                               ),
                             ),
                           ),
                         ],
-
                       ),
                     ),
                   ),

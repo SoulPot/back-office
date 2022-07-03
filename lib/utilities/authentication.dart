@@ -37,7 +37,7 @@ class Authentication {
           duration: Duration(milliseconds: 600),
           reverseDuration: Duration(milliseconds: 600),
           type: PageTransitionType.fade,
-          child: HomeView(),
+          child: HomeView(selectedIndex: 0,),
           childCurrent: context.widget),
     );
   }
