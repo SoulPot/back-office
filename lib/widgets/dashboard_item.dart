@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
-
 class DashboardItem extends StatefulWidget {
   const DashboardItem(
       {Key? key, required this.title, required this.value, required this.dark})
@@ -20,7 +18,7 @@ class _DashboardItemState extends State<DashboardItem> {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Column(
           children: [
             Text(

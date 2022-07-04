@@ -14,11 +14,11 @@ class _ManageObjectivesViewState extends State<ManageObjectivesView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: SoulPotTheme.SPBackgroundWhite,
+      color: SoulPotTheme.spBackgroundWhite,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
@@ -29,7 +29,7 @@ class _ManageObjectivesViewState extends State<ManageObjectivesView> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: ObjectivesCollectionViewer(),
+          child: const ObjectivesCollectionViewer(),
              //declare your widgets here
         ),
       ),

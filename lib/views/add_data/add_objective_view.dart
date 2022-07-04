@@ -1,8 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soulpot_manager/models/Objective.dart';
+import 'package:soulpot_manager/models/objective.dart';
 import 'package:soulpot_manager/utilities/firestore.dart';
 import 'package:soulpot_manager/widgets/custom_textfield.dart';
 
@@ -16,12 +15,12 @@ class AddObjectiveView extends StatefulWidget {
 }
 
 class _AddObjectiveViewState extends State<AddObjectiveView> {
-  TextEditingController _idController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
-  TextEditingController _fieldController = TextEditingController();
-  TextEditingController _objectiveValueController = TextEditingController();
-  TextEditingController _typeController = TextEditingController();
+  final TextEditingController _idController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _fieldController = TextEditingController();
+  final TextEditingController _objectiveValueController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +28,12 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
     var maxWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-        color: SoulPotTheme.SPBackgroundWhite,
+        color: SoulPotTheme.spBackgroundWhite,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
               height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 gradient: LinearGradient(
                   colors: [
@@ -54,39 +53,39 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                 ),
                 child: SingleChildScrollView(
                   controller: ScrollController(),
-                  child: Container(
+                  child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.9,
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 10, top: 10),
+                          padding: const EdgeInsets.only(left: 10, top: 10),
                           child: Row(
                             children: [
                               IconButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                icon: Icon(Icons.arrow_back_ios_new_rounded,
+                                icon: const Icon(Icons.arrow_back_ios_new_rounded,
                                     color: Colors.white, size: 30),
                                 iconSize: 30,
                                 alignment: Alignment.topLeft,
                               ),
-                              Spacer(),
+                              const Spacer(),
                             ],
                           ),
                         ),
-                        Spacer(),
-                        Text(
+                        const Spacer(),
+                        const Text(
                           "Informations affichées de l'objectif",
                           style: TextStyle(
-                              color: SoulPotTheme.SPBackgroundWhite,
+                              color: SoulPotTheme.spBackgroundWhite,
                               fontWeight: FontWeight.bold,
                               fontSize: 24),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _idController,
                               titleText: "Identifiant de l'objectif",
@@ -94,7 +93,7 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _nameController,
                               titleText: "Nom de l'objectif",
@@ -102,7 +101,7 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _descriptionController,
                               titleText: "Description de l'objectif",
@@ -110,7 +109,7 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _typeController,
                               titleText: "Difficulté de l'objectif",
@@ -118,21 +117,21 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
-                        Text(
+                        const Spacer(),
+                        const Text(
                           "Informations techniques",
                           style: TextStyle(
-                              color: SoulPotTheme.SPBackgroundWhite,
+                              color: SoulPotTheme.spBackgroundWhite,
                               fontWeight: FontWeight.bold,
                               fontSize: 24),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _fieldController,
                               titleText: "Champ sur lequel porte l'objectif",
@@ -140,7 +139,7 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _objectiveValueController,
                               titleText: "Valeur à atteindre",
@@ -148,25 +147,25 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           decoration: BoxDecoration(
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                   color: Colors.black26,
                                   offset: Offset(0, 4),
                                   blurRadius: 5.0)
                             ],
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               stops: [0.0, 1.0],
                               colors: [
-                                SoulPotTheme.SPGreen,
-                                SoulPotTheme.SPPaleGreen,
+                                SoulPotTheme.spGreen,
+                                SoulPotTheme.spPaleGreen,
                               ],
                             ),
                             color: Colors.deepPurple.shade300,
@@ -185,12 +184,12 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
-                                      title: Text("Erreur"),
-                                      content: Text(
+                                      title: const Text("Erreur"),
+                                      content: const Text(
                                           "Veuillez remplir tous les champs pour créer une plante"),
                                       actions: [
                                         TextButton(
-                                          child: Text("OK"),
+                                          child: const Text("OK"),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
@@ -212,20 +211,6 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                                     .then((value) => Navigator.pop(context));
                               }
                             },
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: maxWidth * 0.1,
-                                  vertical: maxHeight * 0.05),
-                              child: Text(
-                                "Ajouter une nouvelle plante",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: SoulPotTheme.SPBlack,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Greenhouse'),
-                              ),
-                            ),
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
@@ -238,9 +223,23 @@ class _AddObjectiveViewState extends State<AddObjectiveView> {
                               shadowColor:
                                   MaterialStateProperty.all(Colors.transparent),
                             ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: maxWidth * 0.1,
+                                  vertical: maxHeight * 0.05),
+                              child: const Text(
+                                "Ajouter une nouvelle plante",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: SoulPotTheme.spBlack,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Greenhouse'),
+                              ),
+                            ),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                   ),

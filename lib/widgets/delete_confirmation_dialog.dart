@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DeleteConfirmationDialog extends StatelessWidget {
   const DeleteConfirmationDialog(
-      {Key? key, required String name, required Widget deleteButton})
-      : this.name = name,
-        this.deleteButton = deleteButton,
-        super(key: key);
+      {Key? key, required this.name, required this.deleteButton})
+      : super(key: key);
 
   final String name;
   final Widget deleteButton;
@@ -14,7 +11,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget cancelButton = TextButton(
-      child: Text("Annuler"),
+      child: const Text("Annuler"),
       onPressed: () {
         Navigator.pop(context);
       },

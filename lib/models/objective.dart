@@ -4,7 +4,7 @@ class Objective {
       this.name,
       this.description,
       this.field,
-      this.objective_value,
+      this.objectiveValue,
       this.type
       );
 
@@ -12,6 +12,6 @@ class Objective {
   String name;
   String description;
   String field;
-  int objective_value;
+  int objectiveValue;
   String type;
 }

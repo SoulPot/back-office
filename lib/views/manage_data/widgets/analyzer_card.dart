@@ -1,16 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soulpot_manager/models/Plant.dart';
 import 'package:soulpot_manager/utilities/firestore.dart';
 import 'package:soulpot_manager/widgets/delete_confirmation_dialog.dart';
 
-import '../../../models/Analyzer.dart';
+import '../../../models/analyzer.dart';
 import '../../../theme.dart';
 
 class AnalyzerCard extends StatefulWidget {
-  const AnalyzerCard({Key? key, required Analyzer analyzer, required this.refreshList})
-      : this.analyzer = analyzer,
-        super(key: key);
+  const AnalyzerCard(
+      {Key? key, required this.analyzer, required this.refreshList})
+      : super(key: key);
 
   final Analyzer analyzer;
   final Function() refreshList;
@@ -25,7 +23,7 @@ class _AnalyzerCardState extends State<AnalyzerCard> {
     var maxHeight = MediaQuery.of(context).size.height;
     var maxWidth = MediaQuery.of(context).size.width;
     Widget deleteButton = TextButton(
-      child: Text(
+      child: const Text(
         "Supprimer",
         style: TextStyle(
           color: Colors.red,
@@ -50,12 +48,12 @@ class _AnalyzerCardState extends State<AnalyzerCard> {
         ),
         child: Container(
           height: maxHeight / 10,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
-                SoulPotTheme.SPPaleGreen,
-                SoulPotTheme.SPGreen,
+                SoulPotTheme.spPaleGreen,
+                SoulPotTheme.spGreen,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -69,10 +67,10 @@ class _AnalyzerCardState extends State<AnalyzerCard> {
                   widget.analyzer.plantGifURL,
                   height: maxHeight / 10,
                 ),
-                Spacer(),
+                const Spacer(),
                 Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       widget.analyzer.id,
                       style: TextStyle(
@@ -89,10 +87,10 @@ class _AnalyzerCardState extends State<AnalyzerCard> {
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   onPressed: () {
                     showDialog(

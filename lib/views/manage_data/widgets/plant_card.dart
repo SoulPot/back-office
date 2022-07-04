@@ -1,17 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:soulpot_manager/models/Plant.dart';
+import 'package:soulpot_manager/models/plant.dart';
 import 'package:soulpot_manager/utilities/firestore.dart';
 import 'package:soulpot_manager/widgets/delete_confirmation_dialog.dart';
-import 'package:soulpot_manager/views/manage_data/PlantDetails.dart';
+import 'package:soulpot_manager/views/manage_data/plant_details_view.dart';
 
 import '../../../theme.dart';
 
 class PlantCard extends StatefulWidget {
-  const PlantCard({Key? key, required Plant plant, required this.refreshList})
-      : this.plant = plant,
-        super(key: key);
+  const PlantCard({Key? key, required this.plant, required this.refreshList})
+      : super(key: key);
 
   final Plant plant;
   final Function() refreshList;
@@ -26,7 +24,7 @@ class _PlantCardState extends State<PlantCard> {
     var maxHeight = MediaQuery.of(context).size.height;
     var maxWidth = MediaQuery.of(context).size.width;
     Widget deleteButton = TextButton(
-      child: Text(
+      child: const Text(
         "Supprimer",
         style: TextStyle(
           color: Colors.red,
@@ -51,12 +49,12 @@ class _PlantCardState extends State<PlantCard> {
         ),
         child: Container(
           height: maxHeight / 10,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
-                SoulPotTheme.SPPalePurple,
-                SoulPotTheme.SPPurple,
+                SoulPotTheme.spPalePurple,
+                SoulPotTheme.spPurple,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -70,10 +68,10 @@ class _PlantCardState extends State<PlantCard> {
                   widget.plant.gifURL,
                   height: maxHeight / 10,
                 ),
-                Spacer(),
+                const Spacer(),
                 Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       widget.plant.alias,
                       style: TextStyle(
@@ -83,17 +81,17 @@ class _PlantCardState extends State<PlantCard> {
                       ),
                     ),
                     Text(
-                      widget.plant.display_pid.toUpperCase(),
+                      widget.plant.displayPID.toUpperCase(),
                       style: TextStyle(
                         fontSize: maxHeight / 75,
                         color: Colors.black,
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   onPressed: () async {
                     await Navigator.push(
@@ -108,7 +106,7 @@ class _PlantCardState extends State<PlantCard> {
                   },
                   icon: Icon(
                     Icons.edit,
-                    color: SoulPotTheme.SPGreen,
+                    color: SoulPotTheme.spGreen,
                     size: maxHeight / 30,
                   ),
                 ),

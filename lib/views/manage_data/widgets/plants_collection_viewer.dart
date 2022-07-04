@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:soulpot_manager/views/manage_data/widgets/plant_card.dart';
@@ -26,12 +25,12 @@ class _PlantsCollectionViewerState extends State<PlantsCollectionViewer> {
         return Container(
           height: maxHeight / 1.15,
           width: maxWidth / 2.7,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
-                SoulPotTheme.SPGreen,
-                SoulPotTheme.SPPaleGreen,
+                SoulPotTheme.spGreen,
+                SoulPotTheme.spPaleGreen,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -47,7 +46,7 @@ class _PlantsCollectionViewerState extends State<PlantsCollectionViewer> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: maxWidth / 60,
-                    color: SoulPotTheme.SPBlack,
+                    color: SoulPotTheme.spBlack,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Greenhouse',
                   ),
@@ -75,7 +74,7 @@ class _PlantsCollectionViewerState extends State<PlantsCollectionViewer> {
                         ),
                       ),
                     )
-                  : Container(
+                  : SizedBox(
                       height: maxHeight / 1.5,
                       width: maxWidth,
                       child: Center(

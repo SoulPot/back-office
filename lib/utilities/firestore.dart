@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:soulpot_manager/models/Analyzer.dart';
-import 'package:soulpot_manager/models/Plant.dart';
+import 'package:soulpot_manager/models/analyzer.dart';
+import 'package:soulpot_manager/models/plant.dart';
 
-import '../models/Objective.dart';
+import '../models/objective.dart';
 
 class FirestoreManager {
   static final FirebaseFirestore firestore =
@@ -15,14 +15,14 @@ class FirestoreManager {
         .doc(plantToAdd.id)
         .set({
           'pid': plantToAdd.id,
-          'display_pid': plantToAdd.display_pid,
+          'display_pid': plantToAdd.displayPID,
           'alias': plantToAdd.alias,
-          'max_light_lux': plantToAdd.max_light_lux,
-          'min_light_lux': plantToAdd.min_light_lux,
-          'max_temp': plantToAdd.max_temp,
-          'min_temp': plantToAdd.min_temp,
-          'max_soil_moist': plantToAdd.max_soil_moist,
-          'min_soil_moist': plantToAdd.min_soil_moist,
+          'max_light_lux': plantToAdd.maxLight,
+          'min_light_lux': plantToAdd.minLight,
+          'max_temp': plantToAdd.maxTemp,
+          'min_temp': plantToAdd.minTemp,
+          'max_soil_moist': plantToAdd.maxHumidity,
+          'min_soil_moist': plantToAdd.minHumidity,
           'image_url': plantToAdd.gifURL,
           'family': plantToAdd.family,
           'recoText': plantToAdd.recoText,
@@ -30,23 +30,21 @@ class FirestoreManager {
           'origin': plantToAdd.origin,
           'infos': plantToAdd.infos,
           'height': plantToAdd.height,
-          'flower_color': plantToAdd.flower_color,
+          'flower_color': plantToAdd.flowerColor,
           'cutting': plantToAdd.cutting,
           'sowing': plantToAdd.sowing,
-          'flowering_season': plantToAdd.flowering_season,
-          'picture_url': plantToAdd.picture_url,
-          'plant_type': plantToAdd.plant_type,
-          'planting_season': plantToAdd.planting_season,
-        })
-        .then((value) => print("Plant Added"))
-        .catchError((error) => print("Failed to add plant: $error"));
+          'flowering_season': plantToAdd.floweringSeason,
+          'picture_url': plantToAdd.pictureURL,
+          'plant_type': plantToAdd.plantType,
+          'planting_season': plantToAdd.plantingSeason,
+        });
   }
 
   static Future<List<Plant>> getPlants() async {
     List<Plant> plants = [];
     await firestore.collection('plants').get().then((value) {
-      value.docs.forEach((plantData) {
-        Plant plant = new Plant(
+      for (var plantData in value.docs) {
+        Plant plant = Plant(
           plantData.data()['pid'],
           plantData.data()['display_pid'],
           plantData.data()['alias'],
@@ -73,7 +71,7 @@ class FirestoreManager {
           plantData.data()['sickness'],
         );
         plants.add(plant);
-      });
+      }
     });
     return plants;
   }
@@ -101,9 +99,7 @@ class FirestoreManager {
     return firestore
         .collection("plants")
         .doc(plantId)
-        .delete()
-        .then((value) => print("Plant Deleted"))
-        .catchError((error) => print("Failed to delete plant: $error"));
+        .delete();
   }
 
   static Future<List<Analyzer>> getAnalyzers() async {
@@ -115,7 +111,7 @@ class FirestoreManager {
             .doc(analyzerData.data()['plantID'])
             .get()
             .then((plantData) {
-          Analyzer analyzer = new Analyzer(analyzerData.id,
+          Analyzer analyzer = Analyzer(analyzerData.id,
               plantData.data()!['image_url'], plantData.data()!['alias']);
           analyzers.add(analyzer);
         });
@@ -128,9 +124,7 @@ class FirestoreManager {
     return firestore
         .collection("analyzers")
         .doc(analyzerId)
-        .delete()
-        .then((value) => print("Analyzer Deleted"))
-        .catchError((error) => print("Failed to delete analyzer: $error"));
+        .delete();
   }
 
   static Future<bool> checkIfUserIsAdmin(String userID) async {
@@ -150,14 +144,14 @@ class FirestoreManager {
         .collection('plants')
         .doc(plantToUpdate.id)
         .update({
-      'display_pid': plantToUpdate.display_pid,
+      'display_pid': plantToUpdate.displayPID,
       'alias': plantToUpdate.alias ,
-      'max_light_lux': plantToUpdate.max_light_lux,
-      'min_light_lux': plantToUpdate.min_light_lux,
-      'max_temp': plantToUpdate.max_temp,
-      'min_temp': plantToUpdate.min_temp,
-      'max_soil_moist': plantToUpdate.max_soil_moist,
-      'min_soil_moist': plantToUpdate.min_soil_moist,
+      'max_light_lux': plantToUpdate.maxLight,
+      'min_light_lux': plantToUpdate.minLight,
+      'max_temp': plantToUpdate.maxTemp,
+      'min_temp': plantToUpdate.minTemp,
+      'max_soil_moist': plantToUpdate.maxHumidity,
+      'min_soil_moist': plantToUpdate.minHumidity,
       'image_url': plantToUpdate.gifURL,
       'family': plantToUpdate.family,
       'recoText': plantToUpdate.recoText,
@@ -165,23 +159,21 @@ class FirestoreManager {
       'origin': plantToUpdate.origin,
       'infos': plantToUpdate.infos,
       'height': plantToUpdate.height,
-      'flower_color': plantToUpdate.flower_color,
+      'flower_color': plantToUpdate.flowerColor,
       'cutting': plantToUpdate.cutting,
       'sowing': plantToUpdate.sowing,
-      'flowering_season': plantToUpdate.flowering_season,
-      'picture_url': plantToUpdate.picture_url,
-      'plant_type': plantToUpdate.plant_type,
-      'planting_season': plantToUpdate.planting_season,
-    })
-        .then((value) => print("Plant Updated"))
-        .catchError((error) => print("Failed to update plant: $error"));
+      'flowering_season': plantToUpdate.floweringSeason,
+      'picture_url': plantToUpdate.pictureURL,
+      'plant_type': plantToUpdate.plantType,
+      'planting_season': plantToUpdate.plantingSeason,
+    });
   }
 
   static Future<List<Objective>> getObjectives() async {
     List<Objective> objectives = [];
     await firestore.collection('objectives').get().then((value) {
-      value.docs.forEach((objectiveData) {
-        Objective objective = new Objective(
+      for (var objectiveData in value.docs) {
+        Objective objective = Objective(
           objectiveData.id,
           objectiveData.data()['nom'],
           objectiveData.data()['description'],
@@ -190,7 +182,7 @@ class FirestoreManager {
           objectiveData.data()['type'],
         );
         objectives.add(objective);
-      });
+      }
     });
     return objectives;
   }
@@ -203,11 +195,9 @@ class FirestoreManager {
       'nom': objectiveToAdd.name,
       'description': objectiveToAdd.description ,
       'field': objectiveToAdd.field,
-      'objective_value': objectiveToAdd.objective_value,
+      'objective_value': objectiveToAdd.objectiveValue,
       'type': objectiveToAdd.type,
-    })
-        .then((value) => print("Objective Updated"))
-        .catchError((error) => print("Failed to update objective: $error"));
+    });
   }
 
   static Future<void> updateObjective(Objective objectiveToUpdate) {
@@ -218,20 +208,16 @@ class FirestoreManager {
       'nom': objectiveToUpdate.name,
       'description': objectiveToUpdate.description ,
       'field': objectiveToUpdate.field,
-      'objective_value': objectiveToUpdate.objective_value,
+      'objective_value': objectiveToUpdate.objectiveValue,
       'type': objectiveToUpdate.type,
-    })
-        .then((value) => print("Objective Updated"))
-        .catchError((error) => print("Failed to update objective: $error"));
+    });
   }
 
   static Future<void> deleteObjective(String objectiveID) {
     return firestore
         .collection("objectives")
         .doc(objectiveID)
-        .delete()
-        .then((value) => print("Objective Deleted"))
-        .catchError((error) => print("Failed to delete objective: $error"));
+        .delete();
   }
 
 

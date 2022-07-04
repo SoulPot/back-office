@@ -17,11 +17,11 @@ class _ManageDataViewState extends State<ManageDataView> {
     var maxHeight = MediaQuery.of(context).size.height;
     var maxWidth = MediaQuery.of(context).size.width;
     return Container(
-      color: SoulPotTheme.SPBackgroundWhite,
+      color: SoulPotTheme.spBackgroundWhite,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
@@ -35,7 +35,7 @@ class _ManageDataViewState extends State<ManageDataView> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: maxWidth / 50, vertical: maxHeight / 18),
             child: Row(
-              children: [
+              children: const [
                 Spacer(),
                 PlantsCollectionViewer(),
                 Spacer(),

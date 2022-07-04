@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soulpot_manager/utilities/authentication.dart';
 import 'package:soulpot_manager/widgets/information_dialog.dart';
@@ -13,8 +12,8 @@ class SignInView extends StatefulWidget {
 }
 
 class _SignInViewState extends State<SignInView> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class _SignInViewState extends State<SignInView> {
       body: Container(
         height: maxHeight,
         width: maxWidth,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               SoulPotTheme.sideBarAccentCanvasColor,
@@ -43,16 +42,16 @@ class _SignInViewState extends State<SignInView> {
                     onPressed: () {
                       showDialog(
                         context: context,
-                        builder: (BuildContext context) => InformationDialog(),
+                        builder: (BuildContext context) => const InformationDialog(),
                       );
                     },
-                    icon: Icon(Icons.info),
-                    color: SoulPotTheme.SPGreen,
+                    icon: const Icon(Icons.info),
+                    color: SoulPotTheme.spGreen,
                     iconSize: 50.0,
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Image.asset(
                 'assets/images/LogoSoulPot.png',
                 height: maxHeight / 3,
@@ -62,7 +61,7 @@ class _SignInViewState extends State<SignInView> {
                       fontSize: maxHeight / 20,
                       fontFamily: "Greenhouse",
                       fontWeight: FontWeight.bold,
-                      color: SoulPotTheme.SPGreen)),
+                      color: SoulPotTheme.spGreen)),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: maxHeight / 20),
                 child: Column(
@@ -76,7 +75,7 @@ class _SignInViewState extends State<SignInView> {
                           controller: _emailController,
                           textAlign: TextAlign.center,
                           textInputAction: TextInputAction.next,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Greenhouse',
@@ -84,7 +83,7 @@ class _SignInViewState extends State<SignInView> {
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: SoulPotTheme.SPGreen,
+                                    color: SoulPotTheme.spGreen,
                                     width: (maxHeight / 100) / 4),
                                 borderRadius: BorderRadius.circular(25.0),
                               ),
@@ -97,7 +96,7 @@ class _SignInViewState extends State<SignInView> {
                                   fontFamily: 'Greenhouse',
                                   fontSize: 20),
                               hintText: "Email",
-                              fillColor: SoulPotTheme.SPBackgroundWhite),
+                              fillColor: SoulPotTheme.spBackgroundWhite),
                         ),
                       ),
                       Padding(
@@ -107,7 +106,7 @@ class _SignInViewState extends State<SignInView> {
                           controller: _passwordController,
                           textAlign: TextAlign.center,
                           textInputAction: TextInputAction.unspecified,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Greenhouse',
@@ -116,7 +115,7 @@ class _SignInViewState extends State<SignInView> {
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: SoulPotTheme.SPGreen,
+                                    color: SoulPotTheme.spGreen,
                                     width: (maxHeight / 100) / 4),
                                 borderRadius: BorderRadius.circular(25),
                               ),
@@ -130,7 +129,7 @@ class _SignInViewState extends State<SignInView> {
                                 fontFamily: 'Greenhouse',
                               ),
                               hintText: "Mot de passe",
-                              fillColor: SoulPotTheme.SPBackgroundWhite),
+                              fillColor: SoulPotTheme.spBackgroundWhite),
                         ),
                       ),
                       Padding(
@@ -142,23 +141,23 @@ class _SignInViewState extends State<SignInView> {
                                 _emailController.text,
                                 _passwordController.text);
                           },
-                          child: Text(
-                            "Connexion",
-                            style: TextStyle(
-                                fontFamily: "Greenhouse", fontSize: 16),
-                          ),
                           style: ElevatedButton.styleFrom(
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(30.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
-                            primary: SoulPotTheme.SPGreen,
+                            primary: SoulPotTheme.spGreen,
                             padding: EdgeInsets.symmetric(
                                 horizontal: maxWidth / 5,
                                 vertical: maxHeight / 25),
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
+                          ),
+                          child: const Text(
+                            "Connexion",
+                            style: TextStyle(
+                                fontFamily: "Greenhouse", fontSize: 16),
                           ),
                         ),
                       ),
@@ -166,7 +165,7 @@ class _SignInViewState extends State<SignInView> {
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),

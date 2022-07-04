@@ -1,12 +1,10 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
 import 'package:soulpot_manager/utilities/firestore.dart';
 import 'package:soulpot_manager/widgets/custom_textfield.dart';
 
-import '../../models/Plant.dart';
+import '../../models/plant.dart';
 import '../../theme.dart';
 
 class AddPlantView extends StatefulWidget {
@@ -17,30 +15,30 @@ class AddPlantView extends StatefulWidget {
 }
 
 class _AddPlantViewState extends State<AddPlantView> {
-  TextEditingController _idController = TextEditingController();
-  TextEditingController _displayIdController = TextEditingController();
-  TextEditingController _aliasController = TextEditingController();
-  TextEditingController _maxLightController = TextEditingController();
-  TextEditingController _minLightController = TextEditingController();
-  TextEditingController _maxTempController = TextEditingController();
-  TextEditingController _minTempController = TextEditingController();
-  TextEditingController _maxHumidityController = TextEditingController();
-  TextEditingController _minHumidityController = TextEditingController();
-  TextEditingController _gifUrlController = TextEditingController();
-  TextEditingController _pictureUrlController = TextEditingController();
-  TextEditingController _familyController = TextEditingController();
-  TextEditingController _recommendationsController = TextEditingController();
-  TextEditingController _plantTypeController = TextEditingController();
-  TextEditingController _originController = TextEditingController();
-  TextEditingController _flowerColorController = TextEditingController();
-  TextEditingController _sowingController = TextEditingController();
-  TextEditingController _cuttingController = TextEditingController();
-  TextEditingController _plantingController = TextEditingController();
-  TextEditingController _floweringController = TextEditingController();
-  TextEditingController _heightController = TextEditingController();
-  TextEditingController _infosController = TextEditingController();
-  TextEditingController _sicknessController = TextEditingController();
-  TextEditingController _shortDescriptionController = TextEditingController();
+  final TextEditingController _idController = TextEditingController();
+  final TextEditingController _displayIdController = TextEditingController();
+  final TextEditingController _aliasController = TextEditingController();
+  final TextEditingController _maxLightController = TextEditingController();
+  final TextEditingController _minLightController = TextEditingController();
+  final TextEditingController _maxTempController = TextEditingController();
+  final TextEditingController _minTempController = TextEditingController();
+  final TextEditingController _maxHumidityController = TextEditingController();
+  final TextEditingController _minHumidityController = TextEditingController();
+  final TextEditingController _gifUrlController = TextEditingController();
+  final TextEditingController _pictureUrlController = TextEditingController();
+  final TextEditingController _familyController = TextEditingController();
+  final TextEditingController _recommendationsController = TextEditingController();
+  final TextEditingController _plantTypeController = TextEditingController();
+  final TextEditingController _originController = TextEditingController();
+  final TextEditingController _flowerColorController = TextEditingController();
+  final TextEditingController _sowingController = TextEditingController();
+  final TextEditingController _cuttingController = TextEditingController();
+  final TextEditingController _plantingController = TextEditingController();
+  final TextEditingController _floweringController = TextEditingController();
+  final TextEditingController _heightController = TextEditingController();
+  final TextEditingController _infosController = TextEditingController();
+  final TextEditingController _sicknessController = TextEditingController();
+  final TextEditingController _shortDescriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +46,12 @@ class _AddPlantViewState extends State<AddPlantView> {
     var maxWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
-        color: SoulPotTheme.SPBackgroundWhite,
+        color: SoulPotTheme.spBackgroundWhite,
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
               height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 gradient: LinearGradient(
                   colors: [
@@ -73,36 +71,36 @@ class _AddPlantViewState extends State<AddPlantView> {
                 ),
                 child: SingleChildScrollView(
                   controller: ScrollController(),
-                  child: Container(
+                  child: SizedBox(
                     height: MediaQuery.of(context).size.height * 1.5,
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 10, top: 10),
+                          padding: const EdgeInsets.only(left: 10, top: 10),
                           child: Row(
                             children: [
                               IconButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                icon: Icon(Icons.arrow_back_ios_new_rounded,
+                                icon: const Icon(Icons.arrow_back_ios_new_rounded,
                                     color: Colors.white, size: 30),
                                 iconSize: 30,
                                 alignment: Alignment.topLeft,
                               ),
-                              Spacer(),
+                              const Spacer(),
                             ],
                           ),
                         ),
-                        Spacer(),
-                        Text("Informations primaires", style: TextStyle(
-                            color: SoulPotTheme.SPBackgroundWhite,
+                        const Spacer(),
+                        const Text("Informations primaires", style: TextStyle(
+                            color: SoulPotTheme.spBackgroundWhite,
                             fontWeight: FontWeight.bold,
                             fontSize: 24),),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _aliasController,
                               titleText: "Alias de la plante",
@@ -110,7 +108,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _idController,
                               titleText: "ID de la plante",
@@ -118,7 +116,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _displayIdController,
                               titleText: "ID affiché de la plante",
@@ -126,7 +124,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _shortDescriptionController,
                               titleText: "Description courte de la plante",
@@ -134,18 +132,18 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
-                        Text("Gif et Images", style: TextStyle(
-                            color: SoulPotTheme.SPBackgroundWhite,
+                        const Spacer(),
+                        const Text("Gif et Images", style: TextStyle(
+                            color: SoulPotTheme.spBackgroundWhite,
                             fontWeight: FontWeight.bold,
                             fontSize: 24),),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _gifUrlController,
                               titleText: "URL du GIF de la plante",
@@ -153,7 +151,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _pictureUrlController,
                               titleText: "URL de l'image de la plante",
@@ -161,18 +159,18 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
-                        Text("Valeurs recommandées", style: TextStyle(
-                            color: SoulPotTheme.SPBackgroundWhite,
+                        const Spacer(),
+                        const Text("Valeurs recommandées", style: TextStyle(
+                            color: SoulPotTheme.spBackgroundWhite,
                             fontWeight: FontWeight.bold,
                             fontSize: 24),),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _maxTempController,
                               titleText: "Température maximale recommandée",
@@ -180,7 +178,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _minTempController,
                               titleText: "Température minimale recommandée",
@@ -188,7 +186,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _maxHumidityController,
                               titleText: "Humidité maximale recommandée",
@@ -196,7 +194,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _minHumidityController,
                               titleText: "Humidité minimale recommandée",
@@ -204,13 +202,13 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _maxLightController,
                               titleText: "Lux maximum recommandés",
@@ -218,7 +216,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _minLightController,
                               titleText: "Lux minimum recommandés",
@@ -226,21 +224,21 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
-                        Text(
+                        const Spacer(),
+                        const Text(
                           "Informations botaniques et d'entretien",
                           style: TextStyle(
-                              color: SoulPotTheme.SPBackgroundWhite,
+                              color: SoulPotTheme.spBackgroundWhite,
                               fontWeight: FontWeight.bold,
                               fontSize: 24),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _familyController,
                               titleText: "Famille de la plante",
@@ -248,7 +246,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _plantTypeController,
                               titleText: "Type de plante",
@@ -256,7 +254,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _originController,
                               titleText: "Origine de la plante",
@@ -264,7 +262,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _recommendationsController,
                               titleText:
@@ -273,13 +271,13 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _sowingController,
                               titleText: "Semis possible",
@@ -287,7 +285,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _cuttingController,
                               titleText: "Bouture possible",
@@ -295,7 +293,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _plantingController,
                               titleText: "Saison de plantation",
@@ -303,7 +301,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _floweringController,
                               titleText: "Saison de floraison",
@@ -311,13 +309,13 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _flowerColorController,
                               titleText: "Couleur(s) des fleurs ou feuilles",
@@ -325,7 +323,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _heightController,
                               titleText: "Hauteur de la plante",
@@ -333,7 +331,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _sicknessController,
                               titleText: "Maladies / Parasites / Nuisibles",
@@ -341,7 +339,7 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             SoulPotTextField(
                               tfController: _infosController,
                               titleText: "Informations sur la plante",
@@ -349,25 +347,25 @@ class _AddPlantViewState extends State<AddPlantView> {
                               width: maxWidth * 0.2,
                               height: maxHeight * 0.15,
                             ),
-                            Spacer(),
+                            const Spacer(),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           decoration: BoxDecoration(
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                   color: Colors.black26,
                                   offset: Offset(0, 4),
                                   blurRadius: 5.0)
                             ],
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               stops: [0.0, 1.0],
                               colors: [
-                                SoulPotTheme.SPGreen,
-                                SoulPotTheme.SPPaleGreen,
+                                SoulPotTheme.spGreen,
+                                SoulPotTheme.spPaleGreen,
                               ],
                             ),
                             color: Colors.deepPurple.shade300,
@@ -388,12 +386,12 @@ class _AddPlantViewState extends State<AddPlantView> {
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
-                                      title: Text("Erreur"),
-                                      content: Text(
+                                      title: const Text("Erreur"),
+                                      content: const Text(
                                           "Veuillez remplir tous les champs pour créer une plante"),
                                       actions: [
                                         TextButton(
-                                          child: Text("OK"),
+                                          child: const Text("OK"),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
@@ -432,20 +430,6 @@ class _AddPlantViewState extends State<AddPlantView> {
                                     .then((value) => Navigator.pop(context));
                               }
                             },
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: maxWidth * 0.1,
-                                  vertical: maxHeight * 0.05),
-                              child: Text(
-                                "Ajouter une nouvelle plante",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: SoulPotTheme.SPBlack,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Greenhouse'),
-                              ),
-                            ),
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
@@ -458,9 +442,23 @@ class _AddPlantViewState extends State<AddPlantView> {
                               shadowColor:
                                   MaterialStateProperty.all(Colors.transparent),
                             ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: maxWidth * 0.1,
+                                  vertical: maxHeight * 0.05),
+                              child: const Text(
+                                "Ajouter une nouvelle plante",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: SoulPotTheme.spBlack,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Greenhouse'),
+                              ),
+                            ),
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                   ),

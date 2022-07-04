@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:soulpot_manager/views/HomeView.dart';
 
+import '../views/home_view.dart';
 import 'firestore.dart';
 
 
@@ -17,13 +17,12 @@ class Authentication {
       UserCredential userCredential =
       await auth.signInWithEmailAndPassword(email: email, password: password);
       user = userCredential.user!;
-      print(auth.currentUser);
       if(await FirestoreManager.checkIfUserIsAdmin(user.uid)) {
         user.reload();
         enterApp(context);
       }
       return user;
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       return null;
     }
   }
@@ -34,10 +33,10 @@ class Authentication {
       PageTransition(
           alignment: Alignment.bottomCenter,
           curve: Curves.easeInOut,
-          duration: Duration(milliseconds: 600),
-          reverseDuration: Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 600),
+          reverseDuration: const Duration(milliseconds: 600),
           type: PageTransitionType.fade,
-          child: HomeView(selectedIndex: 0,),
+          child: const HomeView(selectedIndex: 0),
           childCurrent: context.widget),
     );
   }

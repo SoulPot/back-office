@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../../../models/Objective.dart';
+import '../../../models/objective.dart';
 import '../../../theme.dart';
 import '../../../utilities/firestore.dart';
 import '../../../widgets/delete_confirmation_dialog.dart';
-import '../ObjectiveDetailsView.dart';
+import '../objective_details_view.dart';
 
 class ObjectiveCard extends StatefulWidget {
   const ObjectiveCard({Key? key, required this.objective, required this.refreshList}) : super(key: key);
@@ -24,7 +23,7 @@ class _ObjectiveCardState extends State<ObjectiveCard> {
     var maxHeight = MediaQuery.of(context).size.height;
     var maxWidth = MediaQuery.of(context).size.width;
     Widget deleteButton = TextButton(
-      child: Text(
+      child: const Text(
         "Supprimer",
         style: TextStyle(
           color: Colors.red,
@@ -49,12 +48,12 @@ class _ObjectiveCardState extends State<ObjectiveCard> {
         ),
         child: Container(
           height: maxHeight / 10,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
-                SoulPotTheme.SPPalePurple,
-                SoulPotTheme.SPPurple,
+                SoulPotTheme.spPalePurple,
+                SoulPotTheme.spPurple,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -64,10 +63,10 @@ class _ObjectiveCardState extends State<ObjectiveCard> {
             padding: EdgeInsets.all(maxWidth / 100),
             child: Row(
               children: [
-                Spacer(),
+                const Spacer(),
                 Column(
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       widget.objective.name,
                       style: TextStyle(
@@ -84,10 +83,10 @@ class _ObjectiveCardState extends State<ObjectiveCard> {
                         fontStyle: FontStyle.italic,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
                 IconButton(
                   onPressed: () async {
                     await Navigator.push(
@@ -102,7 +101,7 @@ class _ObjectiveCardState extends State<ObjectiveCard> {
                   },
                   icon: Icon(
                     Icons.edit,
-                    color: SoulPotTheme.SPGreen,
+                    color: SoulPotTheme.spGreen,
                     size: maxHeight / 30,
                   ),
                 ),

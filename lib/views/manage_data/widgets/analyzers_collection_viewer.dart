@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
@@ -27,12 +26,12 @@ class _AnalyzersCollectionViewerState extends State<AnalyzersCollectionViewer> {
         return Container(
           height: maxHeight / 1.15,
           width: maxWidth / 2.7,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
-                SoulPotTheme.SPPurple,
-                SoulPotTheme.SPPalePurple,
+                SoulPotTheme.spPurple,
+                SoulPotTheme.spPalePurple,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -48,7 +47,7 @@ class _AnalyzersCollectionViewerState extends State<AnalyzersCollectionViewer> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: maxWidth / 60,
-                    color: SoulPotTheme.SPBlack,
+                    color: SoulPotTheme.spBlack,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Greenhouse',
                   ),
@@ -69,7 +68,6 @@ class _AnalyzersCollectionViewerState extends State<AnalyzersCollectionViewer> {
                           shrinkWrap: true,
                           itemCount: snapshot.data.length,
                           itemBuilder: (context, index) {
-                            print("analyzer");
                             return AnalyzerCard(
                                 analyzer: snapshot.data[index],
                                 refreshList: refreshList);
@@ -77,7 +75,7 @@ class _AnalyzersCollectionViewerState extends State<AnalyzersCollectionViewer> {
                         ),
                       ),
                     )
-                  : Container(
+                  : SizedBox(
                       height: maxHeight / 1.5,
                       width: maxWidth,
                       child: Center(

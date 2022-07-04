@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soulpot_manager/views/HomeView.dart';
-import 'package:soulpot_manager/views/SignInView.dart';
+import 'package:soulpot_manager/views/home_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +13,7 @@ class SoulPotManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'SoulPot Manager',
-      home: HomeView(),
+      home: HomeView(selectedIndex: 0),
     );
   }
 }

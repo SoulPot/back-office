@@ -1,13 +1,11 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:soulpot_manager/views/manage_objectives/widgets/objective_card.dart';
 
 import '../../../theme.dart';
 import '../../../utilities/firestore.dart';
-import '../../manage_data/widgets/plant_card.dart';
 
 class ObjectivesCollectionViewer extends StatefulWidget {
   const ObjectivesCollectionViewer({Key? key}) : super(key: key);
@@ -27,12 +25,12 @@ class _ObjectivesCollectionViewerState extends State<ObjectivesCollectionViewer>
         return Container(
           height: maxHeight / 1.15,
           width: maxWidth / 2.7,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             gradient: LinearGradient(
               colors: [
-                SoulPotTheme.SPGreen,
-                SoulPotTheme.SPPaleGreen,
+                SoulPotTheme.spGreen,
+                SoulPotTheme.spPaleGreen,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -48,7 +46,7 @@ class _ObjectivesCollectionViewerState extends State<ObjectivesCollectionViewer>
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: maxWidth / 60,
-                    color: SoulPotTheme.SPBlack,
+                    color: SoulPotTheme.spBlack,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Greenhouse',
                   ),
@@ -76,7 +74,7 @@ class _ObjectivesCollectionViewerState extends State<ObjectivesCollectionViewer>
                   ),
                 ),
               )
-                  : Container(
+                  : SizedBox(
                 height: maxHeight / 1.5,
                 width: maxWidth,
                 child: Center(

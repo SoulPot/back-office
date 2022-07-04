@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:sidebarx/sidebarx.dart';
 import 'package:soulpot_manager/theme.dart';
-import 'package:soulpot_manager/views/SignInView.dart';
-import 'package:soulpot_manager/views/add_data/AddDataView.dart';
-import 'package:soulpot_manager/views/charts/ChartsView.dart';
-import 'package:soulpot_manager/views/manage_data/ManageDataView.dart';
-import 'package:soulpot_manager/views/manage_objectives/ManageObjectivesView.dart';
+import 'package:soulpot_manager/views/sign_in_view.dart';
+import 'package:soulpot_manager/views/add_data/add_data_view.dart';
+import 'package:soulpot_manager/views/charts/charts_view.dart';
+import 'package:soulpot_manager/views/manage_data/manage_data_view.dart';
+import 'package:soulpot_manager/views/manage_objectives/manage_objectives_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key, required this.selectedIndex}) : super(key: key);
@@ -17,16 +17,16 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  late var _controller;
+  late SidebarXController _controller;
   var _views = [];
 
   @override
   void initState() {
     _views = [
-      ChartsView(),
-      AddDataView(),
-      ManageDataView(),
-      ManageObjectivesView(),
+      const ChartsView(),
+      const AddDataView(),
+      const ManageDataView(),
+      const ManageObjectivesView(),
     ];
     _controller = SidebarXController(selectedIndex: widget.selectedIndex);
     super.initState();
@@ -34,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SoulPotTheme.SPBackgroundWhite,
+      backgroundColor: SoulPotTheme.spBackgroundWhite,
       body: Row(
         children: [
           SidebarX(
@@ -61,7 +61,7 @@ class _HomeViewState extends State<HomeView> {
                 border: Border.all(
                   color: SoulPotTheme.sideBarActionColor.withOpacity(0.37),
                 ),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
                     SoulPotTheme.sideBarAccentCanvasColor,
                     SoulPotTheme.sideBarCanvasColor
@@ -79,7 +79,7 @@ class _HomeViewState extends State<HomeView> {
                 size: 20,
               ),
               selectedIconTheme: const IconThemeData(
-                color: SoulPotTheme.SPGreen,
+                color: SoulPotTheme.spGreen,
                 size: 20,
               ),
             ),
@@ -103,13 +103,13 @@ class _HomeViewState extends State<HomeView> {
                             child: Image.asset('assets/images/LogoSoulPot.png'),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "Administration",
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                             fontFamily: "Greenhouse",
-                            color: SoulPotTheme.SPGreen,
+                            color: SoulPotTheme.spGreen,
                           ),
                         ),
                       ],
@@ -169,10 +169,10 @@ class _HomeViewState extends State<HomeView> {
                     PageTransition(
                         alignment: Alignment.bottomCenter,
                         curve: Curves.easeInOut,
-                        duration: Duration(milliseconds: 600),
-                        reverseDuration: Duration(milliseconds: 600),
+                        duration: const Duration(milliseconds: 600),
+                        reverseDuration: const Duration(milliseconds: 600),
                         type: PageTransitionType.fade,
-                        child: SignInView(),
+                        child: const SignInView(),
                         childCurrent: context.widget),
                   );
                 },
