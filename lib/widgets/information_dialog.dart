@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InformationDialog extends StatelessWidget {
@@ -17,20 +16,27 @@ class InformationDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              "Information",
+              "Soulpot Administration",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-              style: TextStyle(
-                fontSize: 15,
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Text(
+                "Cette web app est le système d'administration du produit Soulpot\n\nUn compte administrateur de l'environnement Soulpot est nécessaire pour se connecter\n\nSi vous êtes administrateur mais que vous n'arrivez pas à vous connecter, adressez-vous à une personne ayant accès à la console d'administration principale",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 25,
+                ),
               ),
             ),
-            RaisedButton(
-              child: Text("OK"),
+            ElevatedButton(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                child: Text("OK"),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },

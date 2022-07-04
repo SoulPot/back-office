@@ -4,10 +4,8 @@ import 'package:sidebarx/sidebarx.dart';
 import 'package:soulpot_manager/theme.dart';
 import 'package:soulpot_manager/views/SignInView.dart';
 import 'package:soulpot_manager/views/add_data/AddDataView.dart';
-import 'package:soulpot_manager/views/add_data/AddPlantView.dart';
 import 'package:soulpot_manager/views/charts/ChartsView.dart';
 import 'package:soulpot_manager/views/manage_data/ManageDataView.dart';
-import 'package:soulpot_manager/views/manage_users/ManageUsersView.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -26,7 +24,6 @@ class _HomeViewState extends State<HomeView> {
       ChartsView(),
       AddDataView(),
       ManageDataView(),
-      ManageUsersView(),
     ];
     super.initState();
   }
@@ -147,15 +144,6 @@ class _HomeViewState extends State<HomeView> {
                 onTap: () {
                   setState(() {
                     _controller.selectIndex(2);
-                  });
-                },
-              ),
-              SidebarXItem(
-                icon: Icons.people,
-                label: 'Gestion utilisateurs',
-                onTap: () {
-                  setState(() {
-                    _controller.selectIndex(3);
                   });
                 },
               ),

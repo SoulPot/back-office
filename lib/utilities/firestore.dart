@@ -161,4 +161,6 @@ class FirestoreManager {
         .catchError((error) => print("Failed to add plant: $error"));
   }
 
+
+
 }

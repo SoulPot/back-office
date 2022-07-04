@@ -14,7 +14,7 @@ class SoulPotManager extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'SoulPot Manager',
-      home: SignInView(),
+      home: HomeView(),
     );
   }
 }

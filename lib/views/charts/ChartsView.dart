@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soulpot_manager/models/Analyzer.dart';
 import 'package:soulpot_manager/utilities/firestore.dart';
+import 'package:soulpot_manager/widgets/dashboard_item.dart';
 
-import '../../models/Plant.dart';
 import '../../theme.dart';
 
 class ChartsView extends StatefulWidget {
@@ -26,70 +24,164 @@ class _ChartsViewState extends State<ChartsView> {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
-              gradient: LinearGradient(
-                colors: [
-                  SoulPotTheme.sideBarAccentCanvasColor,
-                  SoulPotTheme.sideBarCanvasColor,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(30)),
+                gradient: LinearGradient(
+                  colors: [
+                    SoulPotTheme.sideBarAccentCanvasColor,
+                    SoulPotTheme.sideBarCanvasColor,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
-            ),
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirestoreManager.firestore.collection("analyzers").where("userID", isEqualTo: FirebaseAuth.instance.currentUser!.uid.toString()).snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) {
-                  return const Text('Something went wrong');
-                }
-
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Text("Loading");
-                }
-                print(snapshot.data!.docs);
-                return ListView(
-                  children: snapshot.data!.docs
-                      .map((DocumentSnapshot document) {
-                        Map<String, dynamic> data =
-                            document.data()! as Map<String, dynamic>;
-                        return Center(
-                          child: ListTile(
-                            title: Text(data['plantID'].toString(), style: TextStyle(color: Colors.white),),
-                            subtitle: Text(data['battery'].toString(), style: TextStyle(color: Colors.white),),
-                          ),
-                        );
-                      })
-                      .toList()
-                      .cast(),
-                );
-              },
-            ),
-          ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Column(children: [
+                  Row(
+                    children: [
+                      const Spacer(),
+                      Text(
+                        'Tableau de bord',
+                        style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          color: SoulPotTheme.SPPalePurple,
+                        ),
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: FirestoreManager.firestore
+                              .collection("analyzers")
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError)
+                              return Center(
+                                  child: Text('Error: ${snapshot.error}'));
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return const Text('Loading...');
+                              default:
+                                return DashboardItem(
+                                  title: "Analyzers en cours d'utilisation",
+                                  value: snapshot.data!.docs.length,
+                                  dark: true,
+                                );
+                            }
+                          },
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          color: SoulPotTheme.SPGreen,
+                        ),
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: FirestoreManager.firestore
+                              .collection("users")
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError)
+                              return Center(
+                                  child: Text('Error: ${snapshot.error}'));
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return const Text('Loading...');
+                              default:
+                                return DashboardItem(
+                                  title: "Utilisateurs inscrits",
+                                  value: snapshot.data!.docs.length,
+                                  dark: false,
+                                );
+                            }
+                          },
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          color: SoulPotTheme.SPPaleGreen,
+                        ),
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: FirestoreManager.firestore
+                              .collection("plants")
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError)
+                              return Center(
+                                  child: Text('Error: ${snapshot.error}'));
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return const Text('Loading...');
+                              default:
+                                return DashboardItem(
+                                  title: "Plantes disponibles",
+                                  value: snapshot.data!.docs.length,
+                                  dark: true,
+                                );
+                            }
+                          },
+                        ),
+                      ),
+                      const Spacer(),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          color: SoulPotTheme.SPPurple,
+                        ),
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: FirestoreManager.firestore
+                              .collection("objectives")
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError)
+                              return Center(
+                                  child: Text('Error: ${snapshot.error}'));
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.waiting:
+                                return const Text('Loading...');
+                              default:
+                                return DashboardItem(
+                                  title: "Objectifs disponibles",
+                                  value: snapshot.data!.docs.length,
+                                  dark: false,
+                                );
+                            }
+                          },
+                        ),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const Spacer(),
+                ]),
+              )),
         ));
   }
 }
-
-/*return StreamBuilder<QuerySnapshot>(
-      stream: _plantsStream,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text('Something went wrong');
-        }
-
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("Loading");
-        }
-
-        return ListView(
-          children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            Map<String, dynamic> data = document.data()!;
-            return ListTile(
-              title: Text(data['alias']),
-              subtitle: Text(data['max_temp'].toString()),
-            );
-          }).toList(),
-        );
-      },
-    );*/
