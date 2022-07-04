@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:soulpot_manager/models/Analyzer.dart';
 import 'package:soulpot_manager/models/Plant.dart';
 
+import '../models/Objective.dart';
+
 class FirestoreManager {
   static final FirebaseFirestore firestore =
       FirebaseFirestore.instanceFor(app: Firebase.apps.first);
@@ -55,6 +57,20 @@ class FirestoreManager {
           plantData.data()['max_soil_moist'],
           plantData.data()['min_soil_moist'],
           plantData.data()['image_url'],
+          plantData.data()['family'],
+          plantData.data()['recommendations'],
+          plantData.data()['shortDescription'],
+          plantData.data()['origin'],
+          plantData.data()['infos'],
+          plantData.data()['height'],
+          plantData.data()['flower_colors'],
+          plantData.data()['cutting'],
+          plantData.data()['sowing'],
+          plantData.data()['flowering_season'],
+          plantData.data()['picture_url'],
+          plantData.data()['plant_type'],
+          plantData.data()['planting_season'],
+          plantData.data()['sickness'],
         );
         plants.add(plant);
       });
@@ -158,7 +174,64 @@ class FirestoreManager {
       'planting_season': plantToUpdate.planting_season,
     })
         .then((value) => print("Plant Updated"))
-        .catchError((error) => print("Failed to add plant: $error"));
+        .catchError((error) => print("Failed to update plant: $error"));
+  }
+
+  static Future<List<Objective>> getObjectives() async {
+    List<Objective> objectives = [];
+    await firestore.collection('objectives').get().then((value) {
+      value.docs.forEach((objectiveData) {
+        Objective objective = new Objective(
+          objectiveData.id,
+          objectiveData.data()['nom'],
+          objectiveData.data()['description'],
+          objectiveData.data()['field'],
+          objectiveData.data()['objective_value'],
+          objectiveData.data()['type'],
+        );
+        objectives.add(objective);
+      });
+    });
+    return objectives;
+  }
+
+  static Future<void> addObjective(Objective objectiveToAdd) {
+    return firestore
+        .collection('objectives')
+        .doc(objectiveToAdd.id)
+        .set({
+      'nom': objectiveToAdd.name,
+      'description': objectiveToAdd.description ,
+      'field': objectiveToAdd.field,
+      'objective_value': objectiveToAdd.objective_value,
+      'type': objectiveToAdd.type,
+    })
+        .then((value) => print("Objective Updated"))
+        .catchError((error) => print("Failed to update objective: $error"));
+  }
+
+  static Future<void> updateObjective(Objective objectiveToUpdate) {
+    return firestore
+        .collection('plants')
+        .doc(objectiveToUpdate.id)
+        .update({
+      'nom': objectiveToUpdate.name,
+      'description': objectiveToUpdate.description ,
+      'field': objectiveToUpdate.field,
+      'objective_value': objectiveToUpdate.objective_value,
+      'type': objectiveToUpdate.type,
+    })
+        .then((value) => print("Objective Updated"))
+        .catchError((error) => print("Failed to update objective: $error"));
+  }
+
+  static Future<void> deleteObjective(String objectiveID) {
+    return firestore
+        .collection("objectives")
+        .doc(objectiveID)
+        .delete()
+        .then((value) => print("Objective Deleted"))
+        .catchError((error) => print("Failed to delete objective: $error"));
   }
 
 

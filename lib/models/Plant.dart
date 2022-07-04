@@ -22,7 +22,8 @@ class Plant {
       this.flowering_season,
       this.picture_url,
       this.plant_type,
-      this.planting_season]);
+      this.planting_season,
+      this.sickness]);
 
   Plant.empty(
       {this.id = "",
@@ -59,4 +60,5 @@ class Plant {
   String? picture_url;
   String? plant_type;
   String? planting_season;
+  String? sickness;
 }

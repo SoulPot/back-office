@@ -6,16 +6,18 @@ import 'package:soulpot_manager/views/SignInView.dart';
 import 'package:soulpot_manager/views/add_data/AddDataView.dart';
 import 'package:soulpot_manager/views/charts/ChartsView.dart';
 import 'package:soulpot_manager/views/manage_data/ManageDataView.dart';
+import 'package:soulpot_manager/views/manage_objectives/ManageObjectivesView.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key, required this.selectedIndex}) : super(key: key);
+  final int selectedIndex;
 
   @override
   State<HomeView> createState() => _HomeViewState();
 }
 
 class _HomeViewState extends State<HomeView> {
-  final _controller = SidebarXController(selectedIndex: 0);
+  late var _controller;
   var _views = [];
 
   @override
@@ -24,7 +26,9 @@ class _HomeViewState extends State<HomeView> {
       ChartsView(),
       AddDataView(),
       ManageDataView(),
+      ManageObjectivesView(),
     ];
+    _controller = SidebarXController(selectedIndex: widget.selectedIndex);
     super.initState();
   }
   @override
@@ -144,6 +148,15 @@ class _HomeViewState extends State<HomeView> {
                 onTap: () {
                   setState(() {
                     _controller.selectIndex(2);
+                  });
+                },
+              ),
+              SidebarXItem(
+                icon: Icons.verified,
+                label: 'Gestion objectifs',
+                onTap: () {
+                  setState(() {
+                    _controller.selectIndex(3);
                   });
                 },
               ),
