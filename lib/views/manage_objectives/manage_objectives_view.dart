@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:soulpot_manager/views/manage_objectives/widgets/objectives_collection_viewer.dart';
 
 import '../../theme.dart';
@@ -13,6 +14,8 @@ class ManageObjectivesView extends StatefulWidget {
 class _ManageObjectivesViewState extends State<ManageObjectivesView> {
   @override
   Widget build(BuildContext context) {
+    var maxHeight = MediaQuery.of(context).size.height;
+    var maxWidth = MediaQuery.of(context).size.width;
     return Container(
       color: SoulPotTheme.spBackgroundWhite,
       child: Padding(
@@ -29,8 +32,10 @@ class _ManageObjectivesViewState extends State<ManageObjectivesView> {
               end: Alignment.bottomRight,
             ),
           ),
-          child: const ObjectivesCollectionViewer(),
-             //declare your widgets here
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: maxWidth / 50, vertical: maxHeight / 18),
+            child: const ObjectivesCollectionViewer(),
+          ),
         ),
       ),
     );
